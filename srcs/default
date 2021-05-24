@@ -15,15 +15,16 @@ server {
 
 	root /var/www/html;
 
-	index index.html index.htm index.nginx-debian.html index.php;
+	index index.html index.htm index.php;
 
 	server_name ft_server;
 
 	location / {
+		autoindex on;
 		try_files $uri $uri/ = 404;
 	}
 	location ~\.php$ {
 		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/var/run/php/php7.3-fpmsock;
+		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
 	}
 }
